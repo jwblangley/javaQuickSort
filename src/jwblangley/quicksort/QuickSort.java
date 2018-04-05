@@ -29,8 +29,25 @@ public class QuickSort {
   private static <T extends Comparable<T>> int partition(List<T> a, T pivot, int from, int to) {
     assert a != null && a.size() > 0
         && 0 <= from && from <= to && to <= a.size();
-    //TODO: implement partition
-    return 1;
+    int leftPtr = 0;
+    int rightPtr = a.size() - 1;
+    while (leftPtr < rightPtr) {
+      while (a.get(leftPtr).compareTo(pivot) < 0) {
+        leftPtr++;
+      }
+      while (a.get(rightPtr).compareTo(pivot) > 0) {
+        rightPtr--;
+      }
+      if (leftPtr < rightPtr) {
+        //algorithm not terminating
+        swap(a, leftPtr, rightPtr);
+        //Cases which have repeated numbers...
+        if (a.get(leftPtr).compareTo(a.get(rightPtr)) == 0) {
+          leftPtr++;
+        }
+      }
+    }
+    return leftPtr;
   }
 
 }
