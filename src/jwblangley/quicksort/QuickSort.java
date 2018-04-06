@@ -26,8 +26,7 @@ public class QuickSort {
     a.set(j, temp);
   }
 
-  // Only public so that testing can occur
-  public static <T extends Comparable<T>> int partition(List<T> a, T pivot, int from, int to) {
+  private static <T extends Comparable<T>> int partition(List<T> a, T pivot, int from, int to) {
     assert a != null && a.size() > 0
         && 0 <= from && from <= to && to <= a.size();
     int leftPtr = from;
