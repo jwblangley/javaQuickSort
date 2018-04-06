@@ -26,23 +26,24 @@ public class QuickSort {
     a.set(j, temp);
   }
 
-  private static <T extends Comparable<T>> int partition(List<T> a, T pivot, int from, int to) {
+  // Only public so that testing can occur
+  public static <T extends Comparable<T>> int partition(List<T> a, T pivot, int from, int to) {
     assert a != null && a.size() > 0
         && 0 <= from && from <= to && to <= a.size();
-    int leftPtr = 0;
-    int rightPtr = a.size() - 1;
+    int leftPtr = from;
+    int rightPtr = to;
     while (leftPtr < rightPtr) {
-      while (a.get(leftPtr).compareTo(pivot) < 0) {
+      while (leftPtr < rightPtr && a.get(leftPtr).compareTo(pivot) < 0) {
         leftPtr++;
       }
-      while (a.get(rightPtr).compareTo(pivot) > 0) {
+      while (leftPtr < rightPtr && a.get(rightPtr - 1).compareTo(pivot) > 0) {
         rightPtr--;
       }
       if (leftPtr < rightPtr) {
         //algorithm not terminating
-        swap(a, leftPtr, rightPtr);
+        swap(a, leftPtr, rightPtr - 1);
         //Cases which have repeated numbers...
-        if (a.get(leftPtr).compareTo(a.get(rightPtr)) == 0) {
+        if (a.get(leftPtr).compareTo(a.get(rightPtr - 1)) == 0) {
           leftPtr++;
         }
       }
